@@ -23,7 +23,9 @@ export default {
         id: this.product.id,
         prodName: this.product.prodName,
         brandName: this.product.brandName,
-        quality: this.quality
+        price: this.product.price,
+        quality: this.quality,
+        img: this.product.img
       };
 
       this.$store.commit('addToCart', {data});
@@ -172,6 +174,9 @@ export default {
   line-height: 44px;
   margin-top: 25px;
   margin-right: auto;  
+}
+.add-to-cart:hover{
+  background-color: rgb(75, 224, 212);
 }
 .detail-tabs{
   border-top: 1px solid #d4d4d4;

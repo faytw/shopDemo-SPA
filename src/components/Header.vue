@@ -4,6 +4,11 @@ export default {
     qtyInCart(){
       return this.$store.getters.qtyInCart;
     }
+  },
+  methods:{
+    clickMyCart(){
+      this.$emit('clickMyCart',true);
+    }
   }
 }
 </script>
@@ -23,12 +28,12 @@ export default {
             <span>註冊</span>
         </router-link>
         <router-link to="/cart">
-            <i class="material-icons">shopping_cart</i>
-            <span>({{qtyInCart}})</span>
+            <i class="material-icons">chat</i>
         </router-link>
-        <router-link to="/cart">
-            <i class="material-icons">search</i>
-        </router-link>
+        <a @click="clickMyCart">
+          <i class="material-icons">shopping_cart</i>
+          <span>({{qtyInCart}})</span>
+        </a>
     </div>
   </header>
 </template>
@@ -39,6 +44,11 @@ header {
   justify-content: space-between;
   border-bottom: 1px solid #f5f5f5;
   padding-top: 5px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  background-color: #f5f5f5;
 }
 .logo {
   max-width: 80px;

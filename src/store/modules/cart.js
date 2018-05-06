@@ -5,9 +5,15 @@ const state = {
 
 //getters
 const getters = {
+    itemInCart: state => state.inCart,
     qtyInCart(state){
         return state.inCart.reduce(function(qty,product){
             return qty + product.quality;
+        }, 0);
+    },
+    priceInCart(state){
+        return state.inCart.reduce(function(price,product){
+            return price + product.price * product.quality;
         }, 0);
     }    
 };
@@ -21,11 +27,18 @@ const mutations = {
                 id: data.id,
                 prodName: data.prodName,
                 brandName: data.brandName,
-                quality: data.quality
+                price: data.price,
+                quality: data.quality,
+                img: data.img
             });
         }else{
             record.quality += data.quality;
         }
+    },
+    'removeItemInCart'(state,{id}){
+        const cart = state.inCart.map(item=>item.id);
+        const index = cart.indexOf(id);
+        return state.inCart.splice(index,1);
     }
 };
 

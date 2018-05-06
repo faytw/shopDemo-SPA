@@ -58,7 +58,6 @@ input[type="submit"]{
   color: #fff;
   background-color: #00B8A9;
   font-weight: 700;
-  margin-top: 1em  
 }
 .other {
   display: flex;
@@ -72,7 +71,8 @@ input[type="submit"]{
   letter-spacing: 1px;  
 }
 .other a:hover{
-  text-decoration: underline;  
+  text-decoration: underline;
+  color: #2e2e2e;
 }
 </style>
 

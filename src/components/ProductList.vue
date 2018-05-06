@@ -2,12 +2,13 @@
 export default {
   computed:{
     products(){
-      const collection = this.$store.state.products.collection;
+      const {type} = this.$route.params;
+      const items = this.$store.getters.allProducts;
 
-      if (collection === "all"){
-        return this.$store.getters.allProducts;
+      if (type === "all" || type === undefined){
+          return items;
       } else {
-        return this.$store.getters.filterProducts;
+          return items.filter(item=>item.type === type);
       }
     }
   }

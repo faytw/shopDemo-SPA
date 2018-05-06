@@ -1,24 +1,40 @@
 <script>
 import Header from "./components/Header.vue";
 import Nav from "./components/Nav.vue";
+import Cart from "./components/Cart.vue";
 import Footer from "./components/Footer.vue";
 
 export default {
   name: 'App',
+  data(){
+    return{
+      myCartStatus: false,
+    }
+  },
+  methods:{
+    handleMyCart(status){
+      this.myCartStatus = status;
+    }
+  },
   components: {
     Header,
     Nav,
+    Cart,
     Footer
-  }
+  },
 }
 </script>
 
 <template>
   <div id="app">
     <div class="container">
-      <Header></Header>
+      <Header @clickMyCart="handleMyCart"></Header>
       <Nav></Nav>
       <router-view></router-view>
+      <Cart  
+            @closeMyCart="handleMyCart"
+            :animated="myCartStatus">
+      </Cart>
       <Footer></Footer>
     </div>
   </div>
