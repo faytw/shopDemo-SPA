@@ -36,8 +36,8 @@ const mutations = {
         }
     },
     'removeItemInCart'(state,{id}){
-        const cart = state.inCart.map(item=>item.id);
-        const index = cart.indexOf(id);
+        const itemInCart = state.inCart.map(item=>item.id);
+        const index = itemInCart.indexOf(id);
         return state.inCart.splice(index,1);
     }
 };

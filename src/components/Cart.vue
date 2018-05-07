@@ -23,6 +23,12 @@ export default {
         animated: true,
       }
     },
+    isLogin(){
+      return this.$store.getters.getLoginStatus;
+    },
+    userName(){
+      return this.$store.getters.getUserName;
+    }
   },
   methods:{
     closeMyCart(){
@@ -38,7 +44,7 @@ export default {
 <template>
   <div class="cart-wrap" :class="animateClass">
     <div class="content">
-      <div class="title">我的購物車
+      <div class="title">{{isLogin ? userName : '我'}}的購物車
         <i class="material-icons"
            @click="closeMyCart">cancel</i>
       </div>
@@ -91,18 +97,19 @@ export default {
 }
 .cart-wrap {
   position: fixed;
-  width: 300px;
   max-height: calc(100vh - 85px);
   overflow: hidden;
   overflow-y: auto;
   top: 75px;
-  right: 0;
   background-color: #fff;
   box-shadow: 1px 0px 5px #E2B51A;
+  width: 0;
+  right: 0;
 }
 .cart-wrap.slidein{
   animation-duration: .3s;
   animation-name: slidein;
+  width: 300px;
 }
 .cart-wrap.slideout{
   animation-duration: .3s;

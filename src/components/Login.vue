@@ -1,17 +1,54 @@
+<script>
+export default {
+  data(){
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  computed:{
+    isLogin(){
+      if(this.$store.getters.getLoginStatus){
+        history.back();
+      }else{
+        alert('請確認會員登入資訊是否正確');
+      }
+    }
+  },
+  methods:{
+    onSubmit(){
+      const data = {
+        email: this.email,
+        password: this.password
+      };
+      this.$store.dispatch('getUserData',{data});
+      this.isLogin;
+    }
+  }
+}
+</script>
+
 <template>
-  <div class="login-box">
+  <div class="login-box"
+       >
     <div class="text-style">會員登入</div>
     <form action="#" class="login-form">
       <div class="form-group">
         <label for="">帳號</label>
-        <input type="text" placeholder="example@gamil.com" required>
+        <input type="text" 
+               placeholder="example@gamil.com"
+               v-model="email" 
+               required>
       </div>
       <div class="form-group">
         <label for="">密碼</label>
-        <input type="text" required>
+        <input type="password"
+               v-model="password" 
+               required>
       </div>
       <div class="form-group">
-        <input type="submit" value="登入" class="btn">
+        <input type="submit" value="登入" class="btn"
+               @click.prevent="onSubmit">
       </div>
     </form>
     <div class="other">
@@ -46,7 +83,7 @@ label{
   margin-bottom: .5em;
   font-size: 0.875em;
 }
-input[type="text"],input[type="submit"]{
+input[type="text"],input[type="submit"],input[type="password"]{
   width: 100%;
   height: 41px;
   line-height: 41px;

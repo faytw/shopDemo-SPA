@@ -14,6 +14,7 @@ export default {
   methods:{
     handleMyCart(status){
       this.myCartStatus = status;
+      
     }
   },
   components: {
