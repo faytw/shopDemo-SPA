@@ -6,15 +6,6 @@ export default {
       password: '',
     }
   },
-  computed:{
-    isLogin(){
-      if(this.$store.getters.getLoginStatus){
-        history.back();
-      }else{
-        alert('請輸入預設帳密test123/test123123');
-      }
-    }
-  },
   methods:{
     onSubmit(){
       const data = {
@@ -29,21 +20,21 @@ export default {
 </script>
 
 <template>
-  <div class="login-box"
-       >
+  <div class="login-box">
     <div class="text-style">會員登入</div>
     <form action="#" class="login-form">
       <div class="form-group">
         <label for="">帳號</label>
         <input type="text" 
-               placeholder="example@gamil.com"
+               placeholder="test123@gamil.com"
                v-model="email" 
                required>
       </div>
       <div class="form-group">
         <label for="">密碼</label>
         <input type="password"
-               v-model="password" 
+               v-model="password"
+               placeholder="test123123" 
                required>
       </div>
       <div class="form-group">
