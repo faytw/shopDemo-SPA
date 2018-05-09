@@ -83,20 +83,20 @@ export default {
           </select>
           <span class="stock">庫存：{{product.stock}}</span>
         </div>
-        <div class="btn add-to-cart" @click="addToCart">加入購物車</div>
+        <button class="btn add-to-cart" @click="addToCart">加入購物車</button>
       </div>
-      <nav class="detail-tabs">
-        <div class="tab-link"
+      <!-- <nav class="detail-tabs">
+        <button class="tab-link btn"
              v-for="(tab,index) in tabs"
              :key="index"
              :class="{active:active===index}"
              @click="selectedTab(tab.view,index)">
              {{tab.type}}
-        </div>
+        </button>
       </nav>
       <div class="tab-content">
         <component :is="currentView"></component>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -141,9 +141,12 @@ export default {
 }
 .feature {
   font-size: 1em;
+  margin-bottom: 3px;
 }
 .feature span {
   vertical-align: top;
+  display: inline-block;
+  max-width: 85%;
 }
 .num {
   font-size: 1.5em;
@@ -174,6 +177,7 @@ export default {
   line-height: 44px;
   margin-top: 25px;
   margin-right: auto;  
+  font-size: 1em;
 }
 .add-to-cart:hover{
   background-color: rgb(75, 224, 212);
@@ -189,6 +193,8 @@ export default {
   color: #747474;
   max-width: 33.3333%;
   box-sizing: border-box;
+  border-radius: 0px;
+  font-size: 1em;
 }
 .tab-link:hover{
   color: #f6416c;

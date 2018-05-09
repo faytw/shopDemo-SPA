@@ -20,7 +20,7 @@ const actions = {
         console.log(userData);
         
         //是否有資料
-        if(userData){
+        if(userData.password === data.password){
            context.commit('getUserData', {userData});
            context.commit('setLoginStatus',true);
         }else{

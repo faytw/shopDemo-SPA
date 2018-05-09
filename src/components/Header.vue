@@ -55,10 +55,6 @@ export default {
         <span>登入</span>
       </router-link>
 
-      <!-- <span class="chat">
-        <i class="material-icons">chat</i>
-      </span> -->
-
       <a @click="clickMyCart">
         <i class="material-icons">shopping_cart</i>
         <span>({{qtyInCart}})</span>
@@ -87,7 +83,7 @@ header {
 }
 @media (max-width: 576px) {
   .logo{
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 .header-nav {
@@ -133,6 +129,10 @@ header {
   text-align: center;
   padding: 5px;
   color: #2e2e2e;
+}
+.user-list li:hover {
+  color: #F6416C;
+  background: #f8b8b8;
 }
 
 </style>

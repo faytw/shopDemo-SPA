@@ -11,7 +11,7 @@ export default {
       if(this.$store.getters.getLoginStatus){
         history.back();
       }else{
-        alert('請確認會員登入資訊是否正確');
+        alert('請輸入預設帳密test123/test123123');
       }
     }
   },

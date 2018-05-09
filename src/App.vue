@@ -62,6 +62,12 @@ a{
   text-align: center;
   border-radius: 3px;
   cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  font-weight: 400;
+}
+.btn:focus {
+  outline: transparent;
 }
 .with-border-style{
   border: 1px solid #d4d4d4;
