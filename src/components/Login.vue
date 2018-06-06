@@ -1,10 +1,15 @@
 <script>
+import FBLogin from './FBLogin.vue';
+
 export default {
   data(){
     return {
       email: '',
       password: '',
     }
+  },
+  components:{
+    FBLogin
   },
   methods:{
     onSubmit(){
@@ -13,7 +18,7 @@ export default {
         password: this.password
       };
       this.$store.dispatch('getUserData',{data});
-      this.isLogin;
+      // this.isLogin;
     }
   }
 }
@@ -22,6 +27,7 @@ export default {
 <template>
   <div class="login-box">
     <div class="text-style">會員登入</div>
+    <FBLogin/>
     <form action="#" class="login-form">
       <div class="form-group">
         <label for="">帳號</label>
