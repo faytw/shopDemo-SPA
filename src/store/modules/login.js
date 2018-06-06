@@ -2,13 +2,15 @@ import members from '../../data/members';
 
 //initial state
 const state = {
-    user: [],
+    userName: '',
+    userID:'',
     isLogin: false,
 };
 
 //getters
 const getters = {
-    getUserName: state => state.user.userName,
+    getUserName: state => state.userName,
+    getUserID: state => state.userID,
     getLoginStatus: state => state.isLogin
 }
 
@@ -17,15 +19,10 @@ const actions = {
     'getUserData'(context,{data}){
         //取得user資料
         const userData = members.find(user => user.email === data.email);
-        console.log(userData);
+        // console.log(userData);
+        context.commit('getUserData', {userData});
+        context.commit('setLoginStatus',true);
         
-        //是否有資料
-        if(userData.password === data.password){
-           context.commit('getUserData', {userData});
-           context.commit('setLoginStatus',true);
-        }else{
-            //errorMsg
-        }
     },
     'userLogout'(context){
         context.commit('setLoginStatus', false);
@@ -35,14 +32,16 @@ const actions = {
 
 //mutations
 const mutations = {
-    'setLoginStatus'(state,status){
+    'setLoginStatus'(state, status){
         state.isLogin = status;
     },
     'getUserData'(state, {userData}){
-        state.user = userData;
+        state.userName = userData.userName;
+        state.userID = userData.userID;
     },
     'resetUserData'(state){
-        state.user = [];
+        state.userName = "";
+        state.userID = "";
     }
 }
 
