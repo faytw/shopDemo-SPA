@@ -2,40 +2,48 @@
 export default {
     data(){
         return {
-            userID:'',
-            username:'',
-            connected: false
+            userData: {},
+            connected: false,
         }
     },
     methods:{
-        connectedFB(){
-            FB.login(this.statusGet);
-        },
-        statusGet(result){
-            if(result.status === 'connected'){
-                this.connected = true;
-                this.getUserDataFB();              
-            }else {
-                this.connected = false;
-            }
+        getFBLoginStatus(){
+            FB.getLoginStatus(function(response){
+                if(response.status==="connected"){
+                    this.getUserDataFB();
+                    this.connected = true;
+                    this.$store.commit('setLoginStatus', true);     
+                }else{
+                    //
+                }
+            }.bind(this));
         },
         getUserDataFB(){
             return new Promise( resolve => { 
-                FB.api('/me', 'GET', 
-                    { fields:['picture', 'name'] }, rs => {
-                        this.userID = rs.id;
-                        this.username = rs.name;
+                FB.api('/me', 'GET', { 
+                    fields:['picture', 'name'] 
+                }, 
+                response => {
+                    this.userData = {
+                        userName: response.name,
+                        userID: response.id
+                    };
                 }); 
-            });            
+            });    
+        }
+    },
+    watch:{
+        userData(){
+            if(this.connected){
+                this.$store.commit('getUserData', {userData:this.userData});
+            }
         }
     },
     mounted(){
         FB.init({
             appId: '239853190119171',
             version: 'v2.8',
-        });
-        
-        FB.getLoginStatus(this.statusGet);
+        });  
     }
 }
 </script>
@@ -43,7 +51,7 @@ export default {
 
 <template>
     <div>
-        <div class="fb-login" @click="statusGet">使用 Facebook 登入</div>
+        <div class="fb-login" @click="getFBLoginStatus">使用 Facebook 登入</div>
     </div>
 </template>
 
