@@ -7,6 +7,9 @@ export default {
         }
     },
     methods:{
+        FBUserLogin(){
+            FB.login(this.getFBLoginStatus);
+        },
         getFBLoginStatus(){
             FB.getLoginStatus(function(response){
                 if(response.status==="connected"){
@@ -51,7 +54,7 @@ export default {
 
 <template>
     <div>
-        <div class="fb-login" @click="getFBLoginStatus">使用 Facebook 登入</div>
+        <div class="fb-login" @click="FBUserLogin">使用 Facebook 登入</div>
     </div>
 </template>
 
